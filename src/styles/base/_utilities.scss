@@ -1,0 +1,26 @@
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.d-flex {
+  display: flex;
+  &.d-wrapNo{flex-wrap: nowrap;}
+  &.d-wrap{flex-wrap: wrap;}
+  &.d-directionCol{flex-direction: column;}
+  &.d-directionRow{flex-direction: row;}
+  &.d-between{justify-content: space-between;}  
+  &.d-center{justify-content: center;}  
+  &.d-alignItemsCenter{align-items: center;}  
+}
+
+.w-100 {
+  width: 100%;
+}

@@ -1,0 +1,6 @@
+{
+  "apiUrl": "https://dummyjson.com",
+  "features": {
+    "adminEnabled": false
+  }
+}

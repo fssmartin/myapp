@@ -1,0 +1,108 @@
+ 
+  <app-auth-card
+      title="Sign up for MyApp"
+      subtitle="Get started with your free account today"
+  >
+
+    <!-- HEADER -->
+    <!-- <ng-container header>
+        <h1 class="auth-title">Welcome back</h1>
+        <p  class="auth-subtitle">Sign in to Myapp</p>        
+    </ng-container> -->
+
+
+    <!-- BODY -->
+    <ng-container body>
+        <form>
+    
+          <div class="form-group">
+    
+            <label for="username">Name</label>    
+            <div class="form-control-wrapper">
+              <mat-icon>person</mat-icon>
+              <input
+                id="username"
+                [(ngModel)]="username"
+                name="username"
+                class="form-control"
+                type="text" 
+                placeholder="Introduce tu name">
+            </div>
+    
+          </div>
+
+          <div class="form-group">
+    
+            <label for="username">Nick</label>    
+            <div class="form-control-wrapper">
+              <mat-icon>person</mat-icon>
+              <input
+                id="username"
+                [(ngModel)]="usernick"
+                name="username"
+                class="form-control"
+                type="text" 
+                placeholder="Introduce tu nick">
+            </div>
+    
+          </div>
+
+
+
+          <div class="form-group">
+    
+            <label for="password">Contraseña</label>    
+            <div class="form-control-wrapper">
+              <mat-icon>lock</mat-icon>
+              <input
+                id="password"
+                [(ngModel)]="password"
+                name="password"
+                class="form-control"
+                type="password" 
+                placeholder="Introduce tu contraseña">
+            </div>
+    
+          </div> 
+    
+        @if (errorMessage || authStore.error() ) {
+
+          <div class="login-error">
+            <mat-icon>error</mat-icon>
+            <span>{{ errorMessage || authStore.error() }}</span>
+          </div>
+
+        } 
+             
+          <p class="d-flex  d-center wraperRemember" >
+              <a href="#aaa">I accept the terms and conditions.</a>
+          </p>
+
+      </form>
+
+    </ng-container>
+
+    <!-- FOOTER -->
+    <ng-container footer>
+
+        <button
+              class="btn btn-primary"
+              (click)="create()"
+              [disabled]="authStore.isLoading()">
+    
+              @if (authStore.isLoading()) {
+                 Accediendo...
+              } @else {
+                 CREATE ACCOUNT  - {{authStore.isLoading()}}
+              }
+        </button>
+ 
+        <p class="secondary-text text-center">Already have an account?
+            <br>
+            <a routerLink="/auth/login" title="Sign in here..">Sign in here</a>
+        </p>
+
+    </ng-container>
+
+
+  </app-auth-card>

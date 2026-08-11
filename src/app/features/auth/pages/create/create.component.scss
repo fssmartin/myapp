@@ -1,0 +1,23 @@
+@use '../../../../../styles/abstracts' as a;
+ 
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: a.$spacing-lg;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: a.$spacing-sm;  
+}
+
+.wraperRemember{
+  & a{font-size: 12px;}
+}
+
+button{
+  margin: 10px 0 0 0;
+  width:100%;
+} 

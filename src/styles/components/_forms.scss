@@ -1,0 +1,83 @@
+@use '../abstracts' as a;
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: a.$spacing-sm;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: a.$color-text-primary;
+}
+
+.form-control-wrapper {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  background-color: a.$color-white;
+
+  border: 1px solid a.$color-border;
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  @include a.transition;
+
+  &:focus-within {
+    border-color: a.$color-primary;
+
+    box-shadow: 0 0 0 3px rgba(0, 59, 112, 0.1);
+  }
+
+  mat-icon {
+    margin-left: a.$spacing-md;
+
+    color: a.$color-text-secondary;
+  }
+}
+
+.form-control {
+  flex: 1;
+
+  padding: 12px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-size: 14px;
+  color: a.$color-text-primary;
+
+  &::placeholder {
+    color: a.$color-text-secondary;
+  }
+}
+
+.login-error {
+  display: flex;
+  align-items: center;
+
+  gap: a.$spacing-sm;
+
+  padding: a.$spacing-md;
+
+  margin-bottom: a.$spacing-md;
+
+  background-color: a.$color-danger-bg-hover;
+
+  border-left: 4px solid a.$color-danger;
+  border-radius: 6px;
+
+  color: a.$color-danger;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  mat-icon {
+    color: a.$color-danger;
+  }
+}

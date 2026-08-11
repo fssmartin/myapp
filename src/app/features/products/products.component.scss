@@ -1,0 +1,55 @@
+@use '../../../styles/abstracts' as a;
+
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: a.$spacing-md;
+
+  margin-bottom: a.$spacing-lg;
+
+  input {
+    flex: 1;
+    max-width: 400px;
+
+    padding: a.$spacing-md;
+
+    border: 1px solid a.$color-border;
+    border-radius: 4px;
+  } 
+  
+}
+
+.table-container {
+  
+  @include a.panel;
+
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: a.$color-surface-light;
+}
+
+th,
+td {
+  padding: a.$spacing-md;
+  text-align: left;
+
+  border-bottom: 1px solid a.$color-border;
+}
+
+th {
+  font-weight: 600;
+}
+
+tbody tr:hover {
+  background-color: a.$color-surface-light;
+}

@@ -1,0 +1,93 @@
+ 
+  <app-auth-card
+  
+      title="Welcome back"
+      subtitle="Sign in to MyApp"
+
+  >
+
+    <!-- HEADER -->
+    <!-- <ng-container header>
+        <h1 class="auth-title">Welcome back</h1>
+        <p  class="auth-subtitle">Sign in to Myapp</p>        
+    </ng-container> -->
+
+
+    <!-- BODY -->
+    <ng-container body>
+        <form>
+    
+          <div class="form-group">
+    
+            <label for="username">Usuario</label>    
+            <div class="form-control-wrapper">
+              <mat-icon>person</mat-icon>
+              <input
+                id="username"
+                [(ngModel)]="username"
+                name="username"
+                class="form-control"
+                type="text" 
+                placeholder="Introduce tu usuario">
+            </div>
+    
+          </div>
+    
+          <div class="form-group">
+    
+            <label for="password">Contraseña</label>    
+            <div class="form-control-wrapper">
+              <mat-icon>lock</mat-icon>
+              <input
+                id="password"
+                [(ngModel)]="password"
+                name="password"
+                class="form-control"
+                type="password" 
+                placeholder="Introduce tu contraseña">
+            </div>
+    
+          </div> 
+    
+        @if (errorMessage || authStore.error() ) {
+
+          <div class="login-error">
+            <mat-icon>error</mat-icon>
+            <span>{{ errorMessage || authStore.error() }}</span>
+          </div>
+
+        } 
+             
+          <p class="d-flex d-between d-alignItemsCenter wraperRemember" >
+              <a href="aaa">Remember Me</a>
+              <a routerLink="/auth/forgot" title="Forgot Password?.." class="">Forgot Password?</a>
+          </p>
+
+      </form>
+
+    </ng-container>
+
+    <!-- FOOTER -->
+    <ng-container footer>
+
+        <button
+              class="btn btn-primary"
+              (click)="login()"
+              [disabled]="authStore.isLoading()">
+    
+              @if (authStore.isLoading()) {
+                 Accediendo...
+              } @else {
+                 SIGN IN  - {{authStore.isLoading()}}
+              }
+        </button>
+
+        <p class="secondary-text text-center"> Don't have an account?
+            <br>
+            <a routerLink="/auth/create" title="Create one..">Click here to create one</a>
+        </p>
+
+    </ng-container>
+
+
+  </app-auth-card>

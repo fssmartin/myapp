@@ -1,0 +1,16 @@
+@use '../../../styles/abstracts' as a;
+
+.auth-layout{
+  width: 400px; 
+  margin: 0 auto;
+  .auth-page{
+    border: 1px solid black;
+  } 
+}
+
+
+@include a.mobile {
+    .auth-layout{
+      width: 100%;
+    } 
+}  

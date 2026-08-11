@@ -1,0 +1,87 @@
+<div class="sidebar">
+
+  <div class="logo">
+    MiApp
+  </div>
+
+  <!-- <nav>
+
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </a>
+
+    <a routerLink="/products" routerLinkActive="active">
+      <mat-icon>inventory_2</mat-icon>
+      <span>Productos</span>
+    </a>
+
+    <a routerLink="/admin" routerLinkActive="active">
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span>Administración</span>
+    </a>
+
+  </nav> -->
+
+  <nav>
+
+    @for (item of menuItems; track item.label) {
+
+      @if (!item.children) {
+        @if ( (item.role && authStore.isLogged() ) || ( !item.role ) ) {
+          <a [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span>{{ item.label }}</span>
+          </a>
+        }
+      }
+
+      @if (item.children) {
+        @if ( (item.role && authStore.isLogged() ) || ( !item.role ) ) {          
+          <div class="menu-group">
+            <div class="menu-group__title" (click)="toggle(item)">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.label }}</span>
+              <mat-icon class="expand-icon">
+                {{ item.expanded ? 'expand_less' : 'expand_more' }}
+              </mat-icon>
+            </div>
+
+            @if (item.expanded) {
+              <div class="menu-group__children">
+
+                @for (child of item.children; track child.route) {
+                  <a [routerLink]="child.route" routerLinkActive="active">
+                    <span>{{ child.label }}</span>
+                  </a>
+                }
+
+              </div>
+            }
+          </div>
+        }
+
+      }
+    }
+
+  </nav>
+
+
+@if (authStore.isLogged()) {
+  <div class="menu-bottom">
+    
+    <p [ngClass] = " ['session' , authStore.remainingClassTime() ] " >
+        <mat-icon>schedule</mat-icon>
+        <span> {{ authStore.remainingTime() }}</span>
+    </p>
+
+    <div class="logout">
+        <a (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar sesión</span>
+        </a>
+    </div>
+
+  </div>
+}
+</div>

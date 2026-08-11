@@ -1,0 +1,21 @@
+@use './colors' as c;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+@mixin transition {
+  transition: all 0.2s ease;
+}
+
+@mixin panel {
+  background: c.$color-white;
+  border: 1px solid c.$color-border;
+  border-radius: 8px;
+}

@@ -1,0 +1,48 @@
+/* Box sizing básico y reseteo de resguardo */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Eliminar márgenes y rellenos por defecto */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Altura mínima y prevención de desbordamiento */
+html, body {
+  height: 100%;
+  min-width: 0;
+}
+
+/* Tipografía fluida y mejoras de lectura */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Títulos con salto de línea equilibrado */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Imágenes y elementos multimedia adaptativos */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Herencia de fuentes para inputs y botones */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Prevención de desbordamiento en textos largos */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}

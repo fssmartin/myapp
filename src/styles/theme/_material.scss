@@ -1,0 +1,102 @@
+@use '../abstracts' as a;
+
+// ========================================
+// MENU PANEL
+// ========================================
+
+.mat-mdc-menu-panel {
+  overflow: hidden !important;
+
+  border: 1px solid a.$color-border;
+  border-radius: 8px;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.04) !important;
+  transition: transform .4s cubic-bezier(.25, .8, .25, 1), visibility .4s cubic-bezier(.25, .8, .25, 1);
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 8px !important; 
+}
+
+// ========================================
+// MENU ITEMS
+// ========================================
+
+.mat-mdc-menu-item {
+  min-height: 44px !important;
+  margin: 2px 6px;
+  // border-radius: 6px;
+  @include a.transition;
+  &:hover {
+    background-color: a.$color-background !important;
+    color: a.$color-primary;
+  }
+
+  mat-icon {
+    color: a.$color-text-secondary;
+    @include a.transition;
+  }
+
+  &:hover mat-icon {
+    color: a.$color-primary;
+  }
+}
+
+.mat-mdc-menu-content {
+  background-color: #fff !important; 
+  padding: 0!important;
+
+}
+
+.mat-divider {
+    display: block;
+    margin: 0!important;
+    border-top-style: solid!important;
+    border-top-color: rgba(0, 0, 0, .12)!important;
+    border-top-width: 1px!important;
+}
+
+
+// ========================================
+// LOGOUT ITEM
+// ========================================
+
+.logout-item {
+  color: a.$color-danger !important;
+  mat-icon {
+    color: a.$color-danger !important;
+  }
+  &:hover {
+    background-color: a.$color-danger-bg-hover !important;
+  }
+}
+
+.mat-icon {
+    -webkit-user-select: none;
+    user-select: none;
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+    overflow: hidden;
+}
+
+.material-icons-outlined { 
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+
+

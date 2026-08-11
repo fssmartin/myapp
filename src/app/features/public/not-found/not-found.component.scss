@@ -1,0 +1,28 @@
+@use '../../../../styles/abstracts' as a;
+
+.not-found {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: a.$spacing-xl;
+
+  &__image {
+    width: 320px;
+    max-width: 80%;
+
+    margin-bottom: a.$spacing-lg;
+  } 
+
+  p {
+    max-width: 500px;
+    color: a.$color-text-secondary;
+    margin-bottom: a.$spacing-xl;
+  }
+}
+

@@ -1,0 +1,35 @@
+@use '../../../styles/abstracts' as a;
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: a.$spacing-lg;
+  margin-bottom: a.$spacing-xl;
+}
+
+.card {
+  flex: 1 1 250px;
+
+  padding: a.$spacing-lg;
+
+  @include a.panel;
+
+  h3 {
+    margin-bottom: a.$spacing-md;
+    color: a.$color-text-secondary;
+    font-size: 14px;
+  }
+
+  span {
+    font-size: 32px;
+    font-weight: 700;
+    color: a.$color-primary;
+  }
+}
+
+.panel {
+  
+  padding: a.$spacing-lg;
+  
+  @include a.panel;
+}
