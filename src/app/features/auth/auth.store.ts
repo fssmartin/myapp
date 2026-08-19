@@ -60,13 +60,11 @@ export class AuthStore {
   private sessionTimer?: ReturnType<typeof setInterval>;
 
   private loadingService = inject(LoadingService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private dialog = inject(MatDialog);
 
-  constructor(private authService:AuthService,
-              private router:Router,
-              private dialog: MatDialog){
-                 
-  } 
-
+  constructor() { }
     
   setUser(user: BaseUser): void {
     this._state.set(user);

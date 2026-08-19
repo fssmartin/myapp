@@ -19,8 +19,13 @@ export class LoadingService {
   hide(): void {
     this._isLoading.set(false);
   }
+
+  toggle(): void {
+    this._isLoading.update(value => !value);
+  }
   
   // Útil para operaciones con then
+  // const user = await loadingService.withLoading(this.api.getUser());
   async withLoading<T>(promise: Promise<T>): Promise<T> {
     this.show();
     try {

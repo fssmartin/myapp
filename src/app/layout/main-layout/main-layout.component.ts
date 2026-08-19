@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { Header } from '../header/header.component';
 import { Sidebar } from '../sidebar/sidebar.component';
 import { LoadingComponent } from '../../shared/ui/loading/loading.component';
+import { ScrollTopComponent } from '../../shared/ui/scroll-top/scroll-top.component';
 
 @Component({
   selector: 'app-main-layout',
@@ -13,6 +14,7 @@ import { LoadingComponent } from '../../shared/ui/loading/loading.component';
     Header,
     Sidebar,
     LoadingComponent,
+    ScrollTopComponent
   ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
