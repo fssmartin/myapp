@@ -42,6 +42,15 @@
   color: a.$color-white;
 }
 
+.btn-disabled{
+  background-color: a.$color-disabled;
+  color: a.$color-white; 
+  &:hover{
+    background-color: a.$color-disabled;
+    box-shadow:none;
+  }
+}
+
 .button{
   &:hover {
     cursor: pointer;

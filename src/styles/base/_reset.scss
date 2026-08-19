@@ -1,3 +1,5 @@
+@use '../abstracts' as a;
+
 /* Box sizing básico y reseteo de resguardo */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -41,8 +43,14 @@ img, picture, video, canvas, svg {
 input, button, textarea, select {
   font: inherit;
 }
+ 
 
 /* Prevención de desbordamiento en textos largos */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
 }

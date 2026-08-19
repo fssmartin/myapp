@@ -1,6 +1,104 @@
 @use '../abstracts' as a;
 
 // ========================================
+// FORMULARIOS
+// ========================================
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field{
+  
+  &.ng-valid{
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece{
+      border-color: a.$color-success!important;
+    }
+  }
+
+  &.mat-form-field-invalid{
+
+    .mat-mdc-form-field-error{
+        color: a.$color-danger!important;
+        text-align: left;
+        font-size: 12px;
+        position: relative;
+        left: -15px;  
+    }
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece{
+      border-color: a.$color-danger!important;
+    }
+
+  }
+}
+
+
+.mat-mdc-form-field-icon-suffix{
+
+  right: 10px; 
+  button {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: none;
+      background: none;
+      padding: 0!important;
+      margin: 0!important;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+  }
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece{
+  border-color: #dfe4ea!important;
+}
+
+.mdc-text-field--outlined.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__input{
+  color: a.$color-text-secondary!important;
+  position: relative!important;
+  top: 3px!important;
+  font-size: 14px!important;
+}
+
+.mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label{
+  color: a.$color-text-secondary!important;
+   font-size: 14px!important; 
+}
+
+.mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper{
+  & .mat-icon{
+    color: a.$color-text-secondary!important;
+  }
+}
+
+.mat-mdc-form-field-icon-prefix > .mat-icon,
+.mat-mdc-form-field-icon-suffix > .mat-icon{
+  color: a.$color-text-secondary!important;
+}
+
+.mat-mdc-form-field-infix{
+  min-height: var(--mat-form-field-container-height, 45px)!important;
+  padding-top: var(--mat-form-field-container-vertical-padding, 10px)!important;
+  padding-bottom: var(--mat-form-field-container-vertical-padding, 8px)!important;
+}
+
+.mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+    top: calc(var(--mat-form-field-container-height, 45px) / 2)!important;
+}
+
+.mat-mdc-form-field-icon-suffix, 
+[dir=rtl] .mat-mdc-form-field-icon-prefix{
+  padding: 0;
+}
+
+.mdc-text-field--outlined .mat-mdc-form-field-infix, 
+.mdc-text-field--no-label .mat-mdc-form-field-infix{
+    padding-top: var(--mat-form-field-container-vertical-padding, 16px);
+    padding-bottom: var(--mat-form-field-container-vertical-padding, 16px);
+}
+
+// ========================================
 // MENU PANEL
 // ========================================
 
@@ -98,5 +196,58 @@
     -webkit-font-smoothing: antialiased;
 }
 
+
+
+// ========================================
+// DIALOG
+// ========================================
+
+.mat-mdc-dialog-container {
+  position: relative;
+  .mat-mdc-dialog-surface{
+    overflow: hidden;
+  } 
+  .mat-close-window {
+    position: absolute;
+    right: 0;
+    top: -6px; 
+    z-index: 9;
+    .mat-icon{
+      &:hover{opacity: 1;}
+      font-size: 30px;
+      height:30px;
+      width:30px;
+      opacity: .6;  
+    }
+  }
+}
+
+.mat-mdc-dialog-content{
+   line-height: normal;
+    text-align: center;
+}
+
+.mat-mdc-dialog-title {
+    line-height: normal !important;
+    text-transform: uppercase;
+    font-weight: bold !important;
+    margin: 15px 0 15px 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    &.warning{
+      color:a.$color-warning!important;
+    }
+    .mat-icon{
+      position: absolute;
+      top: -10px;
+      left: 5px;
+      font-size: 60px;
+      height: 60px;
+      width: 60px;
+      opacity: 0.2;
+    }
+}
 
 

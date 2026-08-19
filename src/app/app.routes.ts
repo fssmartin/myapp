@@ -10,19 +10,17 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./features/dashboard/dashboard.component')
-            .then(c => c.DashboardComponent)
+          import('./features/dashboard/dashboard.component').then(c => c.DashboardComponent)
       },
       {
-          path:'auth',
-          loadChildren:() => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
-          
+        path:'auth',
+        loadChildren:() => 
+          import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
       },       
       {
         path: 'products',
         loadComponent: () =>
-          import('./features/products/products.component')
-            .then(c => c.ProductsComponent)
+          import('./features/products/products.component').then(c => c.ProductsComponent)
       },
       {    
           path: '**',

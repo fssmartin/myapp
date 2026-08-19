@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatButtonModule } from '@angular/material/button';
 
 import { timer } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
@@ -10,11 +11,21 @@ import { timer } from 'rxjs';
   standalone: true,
   imports: [
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule, 
   ],
   template: `
 
-    <h2 mat-dialog-title>{{ data.title }} - {{ data.type }}</h2>
+    <button mat-icon-button mat-dialog-close class="mat-close-window">
+        <mat-icon>close</mat-icon>
+    </button>
+
+
+    <h2 mat-dialog-title [class]="data.type">
+      <mat-icon >schedule</mat-icon>
+      {{ data.title }} 
+    </h2>
+   
     @if(data.subtitle){
       <h3 mat-dialog-title>{{ data.subtitle }}</h3>
     }  

@@ -8,6 +8,8 @@ import { AUTH_CONSTANTS } from "../../core/constants/auth.constants";
 
 import { MatDialog } from '@angular/material/dialog';
 import { MessageDialogComponent } from '../../shared/components/message-dialog/message-dialog';
+import { LoadingService } from '../../core/services/loading.service';
+import { delay } from 'rxjs';
 
 
 @Injectable({
@@ -16,18 +18,18 @@ import { MessageDialogComponent } from '../../shared/components/message-dialog/m
 export class AuthStore {
 
   private readonly _state = signal<BaseUser | null>(null);
-  private readonly _loading = signal(false);
+  // private readonly _loading = signal(false);
   private readonly _error = signal<string | null>(null);
   private readonly _remainingMs = signal(0); 
   private readonly _warningShown = signal(false); 
 
   readonly user = this._state.asReadonly();
-  readonly loading = this._loading.asReadonly();
+  // readonly loading = this._loading.asReadonly();
   readonly error = this._error.asReadonly();
   //readonly remainingMs = this._remainingMs.asReadonly();
   
   readonly isLogged = computed(() => this._state() !== null);
-  readonly isLoading = computed(() => this.loading() );
+  // readonly isLoading = computed(() => this.loading() );
 
   readonly remainingTime = computed(() => {
 
@@ -57,6 +59,7 @@ export class AuthStore {
   private destroyRef = inject(DestroyRef);
   private sessionTimer?: ReturnType<typeof setInterval>;
 
+  private loadingService = inject(LoadingService);
 
   constructor(private authService:AuthService,
               private router:Router,
@@ -64,9 +67,6 @@ export class AuthStore {
                  
   } 
 
-  setLoading(value: boolean): void {
-      this._loading.set(value);
-  }
     
   setUser(user: BaseUser): void {
     this._state.set(user);
@@ -78,27 +78,28 @@ export class AuthStore {
 
   restoreSession():void {
 
-      this.setLoading(true); 
+      this.loadingService.show();
 
       let hasToken = this.authService.hasSession();
 
       if(!hasToken){
-          this.setLoading(false); 
+          this.loadingService.hide();
           return; 
       }  
       this.authService.getMe().pipe(
-                takeUntilDestroyed(this.destroyRef),  
+              delay(2000),
+              takeUntilDestroyed(this.destroyRef),  
           )    
           .subscribe({
             next:(userResponse)=>{
               this.startSessionTimer();
               this._state.set(userResponse);
-              this.setLoading(false);    
+              this.loadingService.hide();
               console.log('✅ ¡USER RESTORE F5 !!!');               
               this.router.navigate(['/']);   
             },
             error:(err)=>{
-              this.setLoading(false);  
+              this.loadingService.hide();
               this.logout();
             },
       })
@@ -106,26 +107,25 @@ export class AuthStore {
 
   login(username: string, password:string): void {
 
-    this.setLoading(true); 
+    this.loadingService.show();
     
     this.authService.login(username,password)
     .pipe(
+        delay(1000),
         takeUntilDestroyed(this.destroyRef),  
       )    
     .subscribe({
       next:(userResponse)=>{
         this._state.set(userResponse);
         console.log('🆗 ¡Login correcto!');   
-        
-       
         this.startSessionTimer();           
-        this.setLoading(false);    
+        this.loadingService.hide();
         this.router.navigate(['/']);   
       },
       error:(err)=>{
         console.log("X Se ha producido un error, ",err)
         this._error.set("Usuario o contraseña incorrectos");
-        this.setLoading(false);  
+        this.loadingService.hide();
       },
     })
       
@@ -183,10 +183,9 @@ export class AuthStore {
   }
 
   private checkExpirationWarning(remainingMs: number): void {
-
+ 
       if (remainingMs <= AUTH_CONSTANTS.WARNING_TIME_MS && 
-          remainingMs > 0 && 
-          !this._warningShown() ) {
+          remainingMs > 0 &&  !this._warningShown() ) {
             
           this._warningShown.set(true);
 
@@ -202,10 +201,11 @@ export class AuthStore {
           });
       }
 
-      if (remainingMs === 0  ){
-        
+
+      if ((remainingMs/1000) < 1  ){ 
+
           if (this.sessionTimer) {
-            clearInterval(this.sessionTimer);
+              clearInterval(this.sessionTimer);
             this.sessionTimer = undefined;
           }
 
