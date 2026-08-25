@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { Header } from '../header/header.component';
 import { Sidebar } from '../sidebar/sidebar.component';
 import { LoadingComponent } from '../../shared/ui/loading/loading.component';
 import { ScrollTopComponent } from '../../shared/ui/scroll-top/scroll-top.component';
+ 
+
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { InfobarService } from '../../core/services/infobar.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -14,9 +18,24 @@ import { ScrollTopComponent } from '../../shared/ui/scroll-top/scroll-top.compon
     Header,
     Sidebar,
     LoadingComponent,
-    ScrollTopComponent
+    ScrollTopComponent,
+    // Infobar,
+    MatSidenavModule
   ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
 })
-export class MainLayout {}
+export class MainLayout {
+ 
+
+  private infobarService = inject(InfobarService);
+
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+ 
+  ngAfterViewInit(): void {
+    console.log("🔵 Registrando sidenav:", this.sidenav);
+    this.infobarService.registerSidenav(this.sidenav);
+  }
+
+  
+}

@@ -80,6 +80,16 @@
     height: 24px;
     width: 24px; 
     margin-right: 0;
+    @include a.mobile {
+      height: 40px;
+      width: 40px; 
+      font-size: 40px;
+    }  
+    @include a.tablet {
+      height: 35px;
+      width: 35px; 
+      font-size: 35px;
+    }  
   }
   
 } 

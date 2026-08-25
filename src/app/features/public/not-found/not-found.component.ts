@@ -15,9 +15,9 @@ import { RouterLink } from '@angular/router';
           class="not-found__image">
 
 
-        <h2>Página no encontrada o de acceso restringido </h2>
+        <h2>Página no encontrada o de acceso restringido </h2><br>
 
-        <a  routerLink="" class="btn btn-secondary">
+        <a  routerLink="" class="btn btn-primary">
           Volver al Dashboard
         </a> 
 

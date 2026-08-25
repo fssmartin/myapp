@@ -23,6 +23,7 @@
     display: flex;    
     height: 100%;  
   }
+
 }
 
 .header-button{
@@ -48,12 +49,12 @@
         background: transparent;
         color: a.$color-text-primary;
         text-decoration: none;
-        cursor: pointer; 
+        cursor: pointer;
 
         mat-icon:first-child {
           width: 32px;
           height: 32px;
-          font-size: 32px;
+          font-size: 32px; 
         }
         &.menu-open {
           background-color: a.$color-background;
@@ -66,6 +67,11 @@
         border-radius: 50%;
       }
     }
+
+
+    @include a.mobile {
+      span {display: none;}
+    }  
     
 }
 

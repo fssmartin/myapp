@@ -5,6 +5,7 @@ import { AuthStore } from '../../features/auth/auth.store';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgClass } from "../../../../node_modules/@angular/common/types/_common_module-chunk";
 import { MatDivider } from '@angular/material/divider';
+import { InfobarService } from '../../core/services/infobar.service';
 
 @Component({
   selector: 'app-header',
@@ -20,25 +21,31 @@ import { MatDivider } from '@angular/material/divider';
 })
 export class Header {
 
-    authStore = inject(AuthStore);
-    menuOpen = signal(false);
+  infobarService = inject(InfobarService);
+  authStore = inject(AuthStore);
+  menuOpen = signal(false);
 
-    readonly user = this.authStore.user; 
+  
+  readonly user = this.authStore.user;
 
-    logout(){
-      this.authStore.logout();
+  logout(){
+    this.authStore.logout();
+  }
+
+  toggleMenu(){
+      this.menuOpen.update(value => !value);
+  }
+
+  toggleFullscreen(): void {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
     }
+  } 
 
-    toggleMenu(){
-        this.menuOpen.update(value => !value);
-    }
- 
-    toggleFullscreen(): void {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-      } else {
-        document.exitFullscreen();
-      }
-    } 
+  toggleInfobar(): void {
+      this.infobarService.toggle();  // Abre/cierra el sidenav
+  } 
 
 }

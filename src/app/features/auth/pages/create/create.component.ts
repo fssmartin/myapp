@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { AuthStore } from '../../auth.store';
 import { AuthCardComponent } from '../../components/auth-card/auth-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { LoadingService } from '../../../../core/services/loading.service';
+import { AuthStore } from '../../auth.store';
 
 @Component({
   selector: 'app-create',
@@ -22,6 +23,7 @@ import { RouterLink } from '@angular/router';
 export class CreateComponent {
 
   readonly authStore = inject(AuthStore);
+  readonly loadingService = inject(LoadingService);
 
   errorMessage = '';
   username = '';

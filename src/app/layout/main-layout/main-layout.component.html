@@ -1,20 +1,36 @@
 <app-loading></app-loading>
 <app-scroll-top></app-scroll-top>
             
-<div class="layout">
 
-    <app-sidebar /> 
 
-    <div class="content-wrapper">
+ 
+<mat-sidenav-container class="sidenav-container">
 
-        <app-header /> 
+    <!-- ✅ MAT-SIDENAV: Panel lateral (sidebar) -->
+    <!-- Modo: "side" = siempre visible, "over" = flotante -->
+    <mat-sidenav  mode="over"  position="end"  #sidenav>    
+            <!-- opened = comienza abierto -->
+        Sidenav content
+    </mat-sidenav>
+ 
+    <mat-sidenav-content>
+            <div class="layout">
 
-        <main class="main-content"> 
+                <app-sidebar /> 
 
-            <router-outlet />
+                <div class="content-wrapper">
 
-        </main>
+                    <app-header /> 
 
-    </div>
+                    <main class="main-content"> 
 
-</div>
+                        <router-outlet />
+
+                    </main>
+
+                </div>
+
+            </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

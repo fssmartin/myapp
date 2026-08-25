@@ -88,12 +88,12 @@
         <button
               class="btn btn-primary"
               (click)="create()"
-              [disabled]="authStore.isLoading()">
+              [disabled]="loadingService.isLoading()">
     
-              @if (authStore.isLoading()) {
+              @if (loadingService.isLoading()) {
                  Accediendo...
               } @else {
-                 CREATE ACCOUNT  - {{authStore.isLoading()}}
+                 CREATE ACCOUNT  - {{loadingService.isLoading()}}
               }
         </button>
  

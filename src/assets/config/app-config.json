@@ -1,6 +1,10 @@
 {
-  "apiUrl": "https://dummyjson.com",
   "features": {
-    "adminEnabled": false
+    "adminEnabled": false,
+    "betaFeatures": true,
+    "maintenanceMode": false
+  },
+  "customSettings": {
+    "maxUploadSize": 5242880
   }
 }

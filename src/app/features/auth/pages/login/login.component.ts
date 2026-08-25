@@ -23,8 +23,7 @@ import { LoadingService } from '../../../../core/services/loading.service';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule,
-    JsonPipe
+    ReactiveFormsModule 
 ],
   
   templateUrl: './login.component.html',

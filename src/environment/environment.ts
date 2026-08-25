@@ -1,8 +1,6 @@
 export const environment = {
-
-    production: false,
-    apiUrl: 'https://dummyjson.com'
-
+  production: false,
+  apiUrl: 'https://dummyjson.com',
+  apiTimeout: 30000,
+  logLevel: 'debug'
 };
-
-// environment.apiUrl + '/auth/login'

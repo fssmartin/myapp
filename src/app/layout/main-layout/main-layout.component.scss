@@ -19,3 +19,55 @@
   overflow-y: auto;
   background-color: a.$color-background;
 }
+
+
+// Contenedor del sidenav
+.sidenav-container {
+  height: 100vh;  // Altura completa de la pantalla
+  display: flex;  // Flexbox para distribuir espacio
+}
+
+// Estilos para el sidenav (sidebar)
+::ng-deep .mat-mdc-drawer {
+  width: 250px;           // Ancho del sidebar
+  background-color: a.$color-background;
+  border-right: 1px solid a.$color-border;
+}
+
+// Estilos para el contenido principal
+::ng-deep .mat-mdc-drawer-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;  // Ocupa el espacio restante
+}
+
+// Header dentro del sidenav-content
+::ng-deep app-header {
+  flex-shrink: 0;  // No se encoge
+}
+
+// Main content
+.main-content {
+  flex: 1;           // Ocupa el espacio restante
+  padding: a.$spacing-lg;
+  overflow-y: auto;  // Scroll vertical si es necesario
+  background-color: a.$color-background;
+}
+
+ 
+
+// Si quieres el borde a la izquierda (recomendado para right sidenav):
+::ng-deep .mat-mdc-drawer {
+  width: 250px;
+  background-color: a.$color-background;
+  border-left: 1px solid a.$color-border;  // ← Cambiar a LEFT
+}
+
+.mat-drawer-content{
+  width: 100%;
+}
+
+mat-sidenav{
+  
+  background-color: cyan;
+}
