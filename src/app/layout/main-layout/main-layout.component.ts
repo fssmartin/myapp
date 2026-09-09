@@ -33,9 +33,12 @@ export class MainLayout {
   @ViewChild('sidenav') sidenav!: MatSidenav;
  
   ngAfterViewInit(): void {
-    console.log("🔵 Registrando sidenav:", this.sidenav);
-    this.infobarService.registerSidenav(this.sidenav);
-  }
+      // Pequeña espera para asegurar que está renderizado
+      setTimeout(() => {
+        console.log("🔵 Registrando sidenav:", this.sidenav);
+        this.infobarService.registerSidenav(this.sidenav);
+      }, 300);
+}
 
   
 }

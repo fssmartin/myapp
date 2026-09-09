@@ -2,6 +2,17 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.7.
 
+
+## BASE DEDATOS LOGIN !! USER 
+
+URL API USER -- dummyjson 
+
+-- https://dummyjson.com/docs/users
+
+    username: 'emilys'
+    password: 'emilyspass' 
+
+
 ## Development server
 
 To start a local development server, run:

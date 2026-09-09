@@ -22,79 +22,77 @@
 
     @if (!authStore.isLogged()) {
 
+        <!-- <div class="header-button header-notifications">        
 
-      <!-- <div class="header-button header-notifications">        
+        </div> -->  
 
-      </div> -->  
-
-      <div class="header-button header-user">
-          <button class="button user-menu"
-            routerLink="/auth/login" >
-            <mat-icon>account_circle</mat-icon>
-            <span>Iniciar sesión</span>
-          </button>
-      </div>
-
-      <div class="header-button" class="infBar">
-          <button class="button" (click)="toggleInfobar()" >
-            <mat-icon>format_align_right</mat-icon>
-          </button>
-      </div>
-
-      
-
+        <div class="header-button header-user">
+            <button class="button user-menu"
+              routerLink="/auth/login" >
+              <mat-icon>account_circle</mat-icon>
+              <span>Iniciar sesión</span>
+            </button>
+        </div>
 
     } @else {
 
-      <div class="header-button header-user">
-        <button class="button user-menu"
-          #trigger="matMenuTrigger"
-          [class.menu-open]="trigger.menuOpen"
-          [matMenuTriggerFor]="userMenu">
-  
-          <img [src]="authStore.user()?.image" [title]="authStore.user()?.firstN+' '+authStore.user()?.lastN"> 
-          <span>{{ authStore.user()?.name }}</span>
-          <mat-icon>
-            {{ trigger.menuOpen ? 'expand_less' : 'expand_more' }}
-          </mat-icon>
-        </button>
-      </div>      
-
-      <mat-menu #userMenu="matMenu">
-
-          <button
-            mat-menu-item
-            routerLink="auth/profile">
-            <mat-icon>account_circle</mat-icon>
-            <span>Ver perfil</span>
+        <div class="header-button header-user">
+          <button class="button user-menu"
+            #trigger="matMenuTrigger"
+            [class.menu-open]="trigger.menuOpen"
+            [matMenuTriggerFor]="userMenu">
+    
+            <img [src]="authStore.user()?.image" [title]="authStore.user()?.firstN+' '+authStore.user()?.lastN"> 
+            <span>{{ authStore.user()?.name }}</span>
+            <mat-icon>
+              {{ trigger.menuOpen ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
           </button>
-          <mat-divider/>  
-          <button
-            mat-menu-item
-            routerLink="auth/settings">
-            <mat-icon>settings</mat-icon>
-            <span>Settings</span>
-          </button>
-          <mat-divider/>          
-          <button
-            mat-menu-item>
-            <mat-icon>help</mat-icon>
-            <span>Help</span>
-          </button>
-          <mat-divider/>          
-          <button
-            mat-menu-item
-            class="logout-item"
-            (click)="logout()">
-            <mat-icon>logout</mat-icon>
-            <span>Cerrar sesión</span>
-          </button>          
+        </div>      
 
-      </mat-menu>
+        <mat-menu #userMenu="matMenu">
+
+            <button
+              mat-menu-item
+              routerLink="auth/profile">
+              <mat-icon>account_circle</mat-icon>
+              <span>Ver perfil</span>
+            </button>
+            <mat-divider/>  
+            <button
+              mat-menu-item
+              routerLink="auth/settings">
+              <mat-icon>settings</mat-icon>
+              <span>Settings</span>
+            </button>
+            <mat-divider/>          
+            <button
+              mat-menu-item>
+              <mat-icon>help</mat-icon>
+              <span>Help</span>
+            </button>
+            <mat-divider/>          
+            <button
+              mat-menu-item
+              class="logout-item"
+              (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Cerrar sesión</span>
+            </button>          
+
+        </mat-menu>
 
     }
-  
 
+    <div class="header-button" class="infBar">
+        <button class="button" (click)="toggleInfobar()" >
+          <!-- [style.visibility]="infobarService.isOpen() ? 'visible' : 'hidden'"
+          [style.box-shadow]="infobarService.isOpen() ? '0 2px 4px' : 'none'"> -->
+          <mat-icon>format_align_right</mat-icon>
+        </button>
+    </div>
+
+    
   </div>
 
 </header>

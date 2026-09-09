@@ -189,7 +189,7 @@ export class AuthStore {
             width: '450px',
             panelClass: 'custom-dialog',
             data: {
-              autoCloseMs: 1500,
+              autoCloseMs: AUTH_CONSTANTS.WARNING_POPUP_TIME_MS,
               type:    'warning',
               title:   'Sesión próxima a expirar',
               message: 'Quedan menos de 2 minutos'
@@ -214,7 +214,7 @@ export class AuthStore {
             autoFocus: true,
             panelClass: 'custom-dialog-bye',
             data: {
-              autoCloseMs: 1500,
+              autoCloseMs: AUTH_CONSTANTS.EXPIRED_POPUP_TIME_MS,
               type:    'error',
               title:   'Sesión expirada',
               message: 'Hasta pronto ' + this._state()?.name,
