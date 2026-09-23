@@ -1,9 +1,6 @@
 <app-loading></app-loading>
 <app-scroll-top></app-scroll-top>
             
-
-
- 
 <mat-sidenav-container class="sidenav-container">
 
     <!-- ✅ MAT-SIDENAV: Panel lateral (sidebar) -->
@@ -11,30 +8,54 @@
     <mat-sidenav  mode="over"  position="end"  #sidenav>    
     <!-- opened = comienza abierto -->
        
-xxxxxxxxxxxxxx asd asd as asd asd asd
-        
+            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+                <mat-tab label="Overview">
+                    <div class="mat-tab-container">
+                            <div class="text-padding">
+                                <p>TODAY</p>
+                                <p class="h1">
+                                    <span>Wednesday</span>
+                                    <br>
+                                    <span>9</span>
+                                    <span style="font-size: 18px; vertical-align: top;">th</span>
+                                    <span>September</span>
+                                </p>
+                            </div>
+                        
+                            <mat-nav-list> 
+
+                                <h3 matsubheader="" class="mat-mdc-subheader mdc-list-group__subheader">UPCOMING EVENTS</h3>
+                                <a
+                                    mat-list-item
+                                    href="#1"    
+                                >
+                                    <span class="mdc-list-item__content">
+                                            <h4 class="mat-mdc-list-item-title mdc-list-item__primary-text">Business Meeting</h4>
+                                            <p  class="mat-mdc-list-item-line mdc-list-item__secondary-text">In 16 Minutes, Meeting Room</p>
+                                            <span class="mat-mdc-list-item-unscoped-content"></span>
+                                    </span>
+                                </a >                                            
+                            
+                            </mat-nav-list> 
+                    </div>  
+                </mat-tab>
+
+                <mat-tab label="Notifications"/>
+
+            </mat-tab-group>
+
     </mat-sidenav>
  
     <mat-sidenav-content>
-
             <div class="layout">
-
                 <app-sidebar /> 
-
                 <div class="content-wrapper">
-
                     <app-header /> 
-
                     <main class="main-content"> 
-
                         <router-outlet />
-
                     </main>
-
                 </div>
-
             </div>
-
     </mat-sidenav-content>
 
 </mat-sidenav-container>

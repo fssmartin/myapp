@@ -1,94 +1,72 @@
-<h1>Dashboard</h1>
 
-<div class="cards">
+<div class="page-layout">
 
-  <div class="card">
-    <h3>PRODUCTS</h3>
-    <span>1.245</span>
+  <div class="layout-header"> 
+    <app-breadcrumb></app-breadcrumb>
   </div>
 
-  <div class="card">
-    <h3>CARTS</h3>
-    <span>8.432</span>
-  </div>
+  <div class="layout-content">
+  
+    <div class="cards">
+    
+      <div class="card">
+        <h3>PRODUCTS</h3>
+        <span>1.245</span>
+      </div>
+    
+      <div class="card">
+        <h3>CARTS</h3>
+        <span>8.432</span>
+      </div>
+    
+      <div class="card">
+        <h3>USERS</h3>
+        <span>15.876</span>
+      </div>
+    
+      <div class="card">
+        <h3>RECIPES</h3>
+        <span>974</span>
+      </div>
+    
+      <div class="card">
+        <h3>POSTS</h3>
+        <span>12</span>
+      </div>
+    
+      <div class="card">
+        <h3>COMMENTS</h3>
+        <span>789</span>
+      </div>   
+    
+      <div class="card">
+        <h3>POSTS</h3>
+        <span>12</span>
+      </div> 
 
-  <div class="card">
-    <h3>USERS</h3>
-    <span>15.876</span>
-  </div>
+      <div class="card">
+        <h3>POSTS</h3>
+        <span>12</span>
+      </div> 
 
-  <div class="card">
-    <h3>RECIPES</h3>
-    <span>974</span>
-  </div>
+      <div class="card">
+        <h3>POSTS</h3>
+        <span>12</span>
+      </div> 
+      
 
-  <div class="card">
-    <h3>POSTS</h3>
-    <span>12</span>
-  </div>
+    </div>
+    
+    @if (authService.hasSession()) {
+      <div class="panel" >
+        <h2>Actividad reciente</h2>
+        <p>Último acceso: 30/07/2026 10:30</p>
+        <p>Última operación validada: Transferencia SEPA</p>
+        <p>tiempo de session: <span> {{ authStore.remainingTime() }}</span></p>
+      </div>
+    }
 
-  <div class="card">
-    <h3>COMMENTS</h3>
-    <span>789</span>
-  </div>   
+  </div> 
 
-    <div class="card">
-    <h3>POSTS</h3>
-    <span>12</span>
-  </div>
-
-  <div class="card">
-    <h3>COMMENTS</h3>
-    <span>789</span>
-  </div>   
-
-    <div class="card">
-    <h3>POSTS</h3>
-    <span>12</span>
-  </div>
-
-  <div class="card">
-    <h3>COMMENTS</h3>
-    <span>789</span>
-  </div>   
-
-    <div class="card">
-    <h3>POSTS</h3>
-    <span>12</span>
-  </div>
-
-  <div class="card">
-    <h3>COMMENTS</h3>
-    <span>789</span>
-  </div>   
-
-    <div class="card">
-    <h3>POSTS</h3>
-    <span>12</span>
-  </div>
-
-  <div class="card">
-    <h3>COMMENTS</h3>
-    <span>789</span>
-  </div>   
-
-    <div class="card">
-    <h3>POSTS</h3>
-    <span>12</span>
-  </div>
-
-  <div class="card">
-    <h3>COMMENTS</h3>
-    <span>789</span>
-  </div>   
 
 </div>
-
-@if (authService.hasSession()) {
-  <div class="panel" >
-    <h2>Actividad reciente</h2>
-    <p>Último acceso: 30/07/2026 10:30</p>
-    <p>Última operación validada: Transferencia SEPA</p>
-    <p>tiempo de session: <span> {{ authStore.remainingTime() }}</span></p>
-  </div>
-}

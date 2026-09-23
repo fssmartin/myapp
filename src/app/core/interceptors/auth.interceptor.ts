@@ -10,6 +10,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 //  Registrarlo
 //  En app.config.ts
 
+    // he visto que no hay que injectar tooodo el store solo la funciona si quieres q vas a usar !
+    //const authStore_Logout = inject(AuthStore).logout;
     const authStore = inject(AuthStore);
 
     const token = localStorage.getItem("token");

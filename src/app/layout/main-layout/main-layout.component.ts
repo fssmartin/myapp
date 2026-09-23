@@ -10,6 +10,10 @@ import { ScrollTopComponent } from '../../shared/ui/scroll-top/scroll-top.compon
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { InfobarService } from '../../core/services/infobar.service';
 
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDivider } from "@angular/material/divider";
+import { MatListModule } from "@angular/material/list"; 
+
 @Component({
   selector: 'app-main-layout',
   standalone: true,
@@ -20,8 +24,11 @@ import { InfobarService } from '../../core/services/infobar.service';
     LoadingComponent,
     ScrollTopComponent,
     // Infobar,
-    MatSidenavModule
-  ],
+    MatSidenavModule,
+    MatTabsModule,
+    MatDivider,
+    MatListModule
+],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
 })

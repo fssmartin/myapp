@@ -10,7 +10,8 @@ imports: [RouterOutlet],
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('mi-app');
+
+    protected readonly title = signal('mi-app');
 
     authStore = inject(AuthStore);
 

@@ -19,7 +19,7 @@ export class InfobarService {
 
   registerSidenav(sidenav: MatSidenav): void {
     console.log("🔵 registerSidenav() - Sidenav registrado");
-    this.sidenav = sidenav;
+    this.sidenav = sidenav;  
     
     // Suscribirse a los toggles cuando se registra
     // this.toggleSubject.subscribe(() => {

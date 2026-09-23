@@ -70,6 +70,7 @@ export class LoginComponent {
 
 
   hide = signal(true);
+  
   clickEvent(event: MouseEvent) {
     console.log("cambio ?? ", !this.hide())
     this.hide.set(!this.hide());
