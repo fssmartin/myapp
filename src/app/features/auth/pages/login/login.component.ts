@@ -72,8 +72,8 @@ export class LoginComponent {
   hide = signal(true);
   
   clickEvent(event: MouseEvent) {
-    console.log("cambio ?? ", !this.hide())
-    this.hide.set(!this.hide());
+    console.log("boton clickEvent cambio ?? ", !this.hide())
+    this.hide.update( item =>  !item);
     event.stopPropagation();
   }
 

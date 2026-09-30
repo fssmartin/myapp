@@ -1,3 +1,5 @@
+import { environment } from "../../../environment/environment";
+
 export const ROUTES = {
     HOME: '/',
     LOGIN: '/auth/login',

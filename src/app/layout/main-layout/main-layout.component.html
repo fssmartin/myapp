@@ -10,6 +10,7 @@
        
             <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
                 <mat-tab label="Overview">
+
                     <div class="mat-tab-container">
                             <div class="text-padding">
                                 <p>TODAY</p>
@@ -38,6 +39,7 @@
                             
                             </mat-nav-list> 
                     </div>  
+
                 </mat-tab>
 
                 <mat-tab label="Notifications"/>
@@ -48,13 +50,18 @@
  
     <mat-sidenav-content>
             <div class="layout">
-                <app-sidebar /> 
+
+                <app-sidebar />
+
                 <div class="content-wrapper">
+                    
                     <app-header /> 
+
                     <main class="main-content"> 
                         <router-outlet />
                     </main>
                 </div>
+
             </div>
     </mat-sidenav-content>
 

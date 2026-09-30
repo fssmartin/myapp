@@ -20,7 +20,7 @@ export const routes: Routes = [
       {
         path: 'products',
         loadComponent: () =>
-          import('./features/products/products.component').then(c => c.ProductsComponent)
+          import('./features/admin/products/products.component').then(c => c.ProductsComponent)
       },
       {    
           path: '**',

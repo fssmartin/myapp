@@ -6,64 +6,18 @@
   </div>
 
   <div class="layout-content">
-  
-    <div class="cards">
-    
-      <div class="card">
-        <h3>PRODUCTS</h3>
-        <span>1.245</span>
-      </div>
-    
-      <div class="card">
-        <h3>CARTS</h3>
-        <span>8.432</span>
-      </div>
-    
-      <div class="card">
-        <h3>USERS</h3>
-        <span>15.876</span>
-      </div>
-    
-      <div class="card">
-        <h3>RECIPES</h3>
-        <span>974</span>
-      </div>
-    
-      <div class="card">
-        <h3>POSTS</h3>
-        <span>12</span>
-      </div>
-    
-      <div class="card">
-        <h3>COMMENTS</h3>
-        <span>789</span>
-      </div>   
-    
-      <div class="card">
-        <h3>POSTS</h3>
-        <span>12</span>
-      </div> 
 
-      <div class="card">
-        <h3>POSTS</h3>
-        <span>12</span>
-      </div> 
 
-      <div class="card">
-        <h3>POSTS</h3>
-        <span>12</span>
-      </div> 
-      
+    <app-product-list [items]="productStore.products()"></app-product-list>
+     
+   
+    @if (authStore.isLogged()) {
 
-    </div>
-    
-    @if (authService.hasSession()) {
-      <div class="panel" >
-        <h2>Actividad reciente</h2>
-        <p>Último acceso: 30/07/2026 10:30</p>
-        <p>Última operación validada: Transferencia SEPA</p>
-        <p>tiempo de session: <span> {{ authStore.remainingTime() }}</span></p>
-      </div>
+      <app-info-user-activity 
+        [infoUser] = "authStore.user()"
+        [remainingTime] = "authStore.remainingTime()">
+      </app-info-user-activity> 
+
     }
 
   </div> 

@@ -9,7 +9,7 @@ import { AUTH_CONSTANTS } from "../../core/constants/auth.constants";
 import { MatDialog } from '@angular/material/dialog';
 import { MessageDialogComponent } from '../../shared/components/message-dialog/message-dialog';
 import { LoadingService } from '../../core/services/loading.service';
-import { delay } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,19 +17,22 @@ import { delay } from 'rxjs';
 })
 export class AuthStore {
 
-  private readonly _state = signal<BaseUser | null>(null);
-  // private readonly _loading = signal(false);
+  private readonly _state = signal<BaseUser | null>(null); 
   private readonly _error = signal<string | null>(null);
   private readonly _remainingMs = signal(0); 
   private readonly _warningShown = signal(false); 
 
-  readonly user = this._state.asReadonly();
-  // readonly loading = this._loading.asReadonly();
-  readonly error = this._error.asReadonly();
-  //readonly remainingMs = this._remainingMs.asReadonly();
+  readonly user = this._state.asReadonly(); 
+  readonly error = this._error.asReadonly(); 
   
-  readonly isLogged = computed(() => this._state() !== null);
-  // readonly isLoading = computed(() => this.loading() );
+  readonly isLogged = computed(() => this._state() !== null); 
+  // readonly isAdmin = computed(() => {
+  //   const user = this._state();
+  //   return !!user && (
+  //     Array.isArray(user.roles) && user.roles.includes('admin')
+  //   );
+  // });
+
 
   readonly remainingTime = computed(() => {
 
@@ -62,7 +65,7 @@ export class AuthStore {
   private router = inject(Router);
   private dialog = inject(MatDialog);
 
-  constructor() { }
+  // constructor() { }
     
   setUser(user: BaseUser): void {
     this._state.set(user);
@@ -72,61 +75,55 @@ export class AuthStore {
     this._state.set(null);
   }
 
-  restoreSession():void {
 
-      this.loadingService.show();
 
-      let hasToken = this.authService.hasSession();
-
-      if(!hasToken){
-          this.loadingService.hide();
-          return; 
-      }  
-      this.authService.getMe().pipe(
-              delay(2000),
-              takeUntilDestroyed(this.destroyRef),  
-          )    
-          .subscribe({
-            next:(userResponse)=>{
-              this.startSessionTimer();
-              this._state.set(userResponse);
-              this.loadingService.hide();
-              console.log('✅ ¡USER RESTORE F5 !!!');               
-              this.router.navigate(['/']);   
-            },
-            error:(err)=>{
-              this.loadingService.hide();
-              this.logout();
-            },
-      })
-  }
-
-  login(username: string, password:string): void {
-
+  private handleAuthResponse(
+    observable: Observable<BaseUser>, 
+    context: 'login' | 'restore'
+  ): void {
     this.loadingService.show();
     
-    this.authService.login(username,password)
-    .pipe(
-        delay(1000),
-        takeUntilDestroyed(this.destroyRef),  
-      )    
-    .subscribe({
-      next:(userResponse)=>{
+    observable.pipe(
+      delay(AUTH_CONSTANTS.API_DELAY_MS),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe({
+      next: (userResponse) => {
         this._state.set(userResponse);
-        console.log('🆗 ¡Login correcto!');   
-        this.startSessionTimer();           
+        this.startSessionTimer();
         this.loadingService.hide();
-        this.router.navigate(['/']);   
+        console.log(`✅ ${context === 'login' ? 'Login' : 'Restore'} correcto`);
+        this.router.navigate(['/']);
       },
-      error:(err)=>{
-        console.log("X Se ha producido un error, ",err)
-        this._error.set("Usuario o contraseña incorrectos");
+      error: (err) => {
+        console.error(`❌ Error en ${context}:`, err);
         this.loadingService.hide();
-      },
-    })
-      
-    
+        if (context === 'login') {
+          this._error.set("Usuario o contraseña incorrectos");
+        } else {
+          this.logout();
+        }
+      }
+    });
   }
+
+  login(username: string, password: string): void {
+    this.handleAuthResponse(
+      this.authService.login(username, password),
+      'login'
+    );
+  }
+
+  restoreSession(): void {
+    this.loadingService.show();
+    if (!this.authService.hasSession()) {
+      this.loadingService.hide();
+      return;
+    }
+    this.handleAuthResponse(
+      this.authService.getMe(),
+      'restore'
+    );
+  } 
 
   logout() {
       this.stopSessionTimer();

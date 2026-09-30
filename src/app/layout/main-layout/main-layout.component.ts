@@ -26,7 +26,6 @@ import { MatListModule } from "@angular/material/list";
     // Infobar,
     MatSidenavModule,
     MatTabsModule,
-    MatDivider,
     MatListModule
 ],
   templateUrl: './main-layout.component.html',

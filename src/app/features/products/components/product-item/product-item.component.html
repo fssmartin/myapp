@@ -1,0 +1,16 @@
+<div class="card">
+    <h3>{{item()?.title.split(' ')[0].toUpperCase()}} {{item()?.title.split(' ')[1].toUpperCase()}} </h3>
+    <img class="card-img" [src]="item()?.images[0]"/>
+    <p class="card-brand">{{item()?.brand}}</p>
+    <app-rating-stars 
+        [rating]="item()?.rating ?? 0">
+    </app-rating-stars>
+    <div class="card-footer">
+        <p class="card-price">
+            <span>{{ Math.trunc(item()?.price ?? 0)  }}</span> 
+            <span>{{ item().price.toString().split('.')[1] }}€</span>    
+        </p> 
+        <p class="card-shippingInformation">{{ item()?.shippingInformation  }}</p> 
+    </div>
+</div>
+     

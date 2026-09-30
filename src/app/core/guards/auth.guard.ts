@@ -7,7 +7,9 @@ export const adminGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   console.log("----- adminGuard: CanActivateFn")
- 
+
+  console.log("----- authStore.USER", authStore.user())
+  
   // console.log("IS ADMIN ? CanActivateFn adminGuard -- " , authService.isAdmin())
   // tengo que preguntar por la signal en authStore.. no en service
 
@@ -16,18 +18,21 @@ export const adminGuard: CanActivateFn = () => {
       : router.createUrlTree(['/home']); 
 };
 
-export const loggedGuard: CanActivateFn = () => {
-    const authStore = inject(AuthStore);
-    const router = inject(Router);
-    
-    console.log("----- loggedGuard: CanActivateFn loged ? ",authStore.isLogged())
-    if (authStore.isLogged()) {
-      return true;
-    }
 
-    // ❌ no esta logado → redirigir
-    router.navigate(['/home']);
-    return false;
+export const loggedGuard: CanActivateFn = () => {
+  const authStore = inject(AuthStore);
+  const router = inject(Router);
+
+  console.log("----- adminGuard: CanActivateFn")
+
+  console.log("----- authStore.USER", authStore.user)
+ 
+  // console.log("IS ADMIN ? CanActivateFn adminGuard -- " , authService.isAdmin())
+  // tengo que preguntar por la signal en authStore.. no en service
+
+  return authStore.isLogged()
+      ? true
+      : router.createUrlTree(['/home']); 
 };
 
 

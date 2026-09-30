@@ -1,0 +1,9 @@
+@use '../../../../../styles/abstracts' as a;
+
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: a.$spacing-lg;
+  margin-bottom: a.$spacing-xl;
+}
