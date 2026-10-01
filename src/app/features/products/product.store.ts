@@ -22,42 +22,42 @@ export class ProductStore {
   readonly error = this._error.asReadonly();  
 
   private destroyRef = inject(DestroyRef);
-  
-  private loadingService = inject(LoadingService);
   private productService = inject(ProductService);
+  private loadingService = inject(LoadingService);
+
+  readonly isLoading = this.loadingService.isLoading;  
   
   constructor() { 
-
-    this.getProducts();
-
+    console.log('➡️ -------  CONSTRUCTOR STORE  ---------');
+    //console.log('✅ llamo a getAllProducts SERVICE recuperar DATA  ');
+    //this.getProducts(); 
   }
     
   private setProducts(product: Product[]): void {
     this._state.set(product);
   }
 
-  private getProducts(): void {
+  load(): void {
     
     this.loadingService.show();
     
     this.productService.getAllProducts()
     .pipe(
-      delay(AUTH_CONSTANTS.API_DELAY_MS),
+      // delay(AUTH_CONSTANTS.API_DELAY_MS),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe({
-      next: (productsResponse) => {
-        this._state.set(productsResponse);
+      next: (data) => {
+        this._state.set(data);
         this.loadingService.hide();
-        console.log('✅ PRODUCTOS RECUPERADOS STORE !', productsResponse);
-        //this.router.navigate(['/']);
+        console.log('✅ -------  STORE data mapeado  ---------', data);
       },
       error: (err) => {
-        console.error(`❌ Error en getProducts`, err);
         this.loadingService.hide();
+        this._error.set(err.message);
       }
     });
   } 
- 
+
 
 }
 

@@ -1,0 +1,10 @@
+@use '../../../styles/abstracts' as a;
+
+ 
+
+.panel {
+  
+  padding: a.$spacing-lg;
+  
+  @include a.panel;
+}

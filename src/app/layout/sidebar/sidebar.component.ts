@@ -33,6 +33,13 @@ export class Sidebar {
         role:null
       },
       {
+        label: 'DashboardResource',
+        icon: 'dashboard',
+        route: '/resource',
+        exact: true,
+        role:null
+      },      
+      {
         label: 'Productos',
         icon: 'inventory_2',
         role:'ADMIN',

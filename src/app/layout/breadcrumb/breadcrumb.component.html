@@ -1,10 +1,10 @@
 <nav aria-label="breadcrumb" class="breadcrumb">
-  <h1>Listado</h1>
+  <h1>{{ data()?.title }}</h1>
   <ol class="breadcrumb-list">
     <!-- Primer nivel -->
-    <li>
+    <!-- <li>
       <a routerLink="/" class="mat-body-1">Inicio</a>
-    </li>
+    </li> -->
     
     <!-- <mat-icon aria-hidden="true">chevron_right</mat-icon>
 
@@ -13,12 +13,19 @@
       <a routerLink="/proyectos" class="mat-body-1">Proyectos</a>
     </li> -->
 
-    <mat-icon aria-hidden="true">chevron_right</mat-icon>
+      @for(item of data().menu; track item.url; let isLast = $last) {
+        
+        @if (!isLast) {
+            <li aria-current="page" class="mat-body-1 active"
+                  [routerLink]="item.url"
+            >{{ item.option }}</li>
+            <mat-icon aria-hidden="true">chevron_right</mat-icon>
+              
+        } @else {
+            <li aria-current="page" class="mat-body-1" >{{ item.option }}</li>
+        }        
+      }
 
-    <!-- Nivel actual (activo) -->
-    <li aria-current="page" class="mat-body-1 active">
-      Listado Productos
-    </li>
   </ol>
   
 </nav>

@@ -98,7 +98,8 @@ export class AuthStore {
         console.error(`❌ Error en ${context}:`, err);
         this.loadingService.hide();
         if (context === 'login') {
-          this._error.set("Usuario o contraseña incorrectos");
+         // this._error.set("Usuario o contraseña incorrectos");
+          this._error.set(err.message);
         } else {
           this.logout();
         }

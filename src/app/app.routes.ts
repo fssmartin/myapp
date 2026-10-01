@@ -13,6 +13,11 @@ export const routes: Routes = [
           import('./features/dashboard/dashboard.component').then(c => c.DashboardComponent)
       },
       {
+        path: 'resource',
+        loadComponent: () =>
+          import('./features/dashboard-resource/dashboard-resource.component').then(c => c.DashboardComponent)
+      },
+      {
         path:'auth',
         loadChildren:() => 
           import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),

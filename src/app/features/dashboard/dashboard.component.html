@@ -1,26 +1,62 @@
 
+
+<app-dashboard-card>
+    
+    <ng-container header>
+
+        <app-breadcrumb 
+            [data]="breadcrumb";
+          >
+        </app-breadcrumb>  
+
+    </ng-container>
+
+    <ng-container body>
+
+          @if (authStore.isLogged()) {      
+            <app-info-user-activity
+                [remainingTime]="authStore.remainingTime()"
+                [infoUser]="authStore.user()"
+            ></app-info-user-activity>
+          }
+
+          @if (productStore.error()) {    
+              <!-- 
+                  lo gestiona core/http , core/interceptors/error desde el servicio para todos
+                  se le pasa en la peticion http get -- context
+                  {context: new HttpContext().set(ERROR_MESSAGE,'No se pudieron cargar los productos')}
+                -->  
+              <app-message-error [msgError]="productStore.error()"></app-message-error>
+          }
+      
+
+          @if (productStore.isLoading()) {
+              <p style="text-align: center;color:red">CARGANDO PRODUCTOS...</p>
+          } @else {
+              <app-product-list
+                  [items]="productStore.products() ?? []">
+                  <!-- ?? []  SIEMPRE LE PASO DATA... en este caso [] X DEFECTO , para q no casque..     -->
+              </app-product-list>
+          }
+
+    </ng-container>
+
+    <ng-container footer>
+        FOOTER  -------
+    </ng-container>
+
+</app-dashboard-card>
+
+
+
 <div class="page-layout">
 
-  <div class="layout-header"> 
-    <app-breadcrumb></app-breadcrumb>
-  </div>
-
-  <div class="layout-content">
+  <div class="layout-content"> 
 
 
-    <app-product-list [items]="productStore.products()"></app-product-list>
-     
-   
-    @if (authStore.isLogged()) {
 
-      <app-info-user-activity 
-        [infoUser] = "authStore.user()"
-        [remainingTime] = "authStore.remainingTime()">
-      </app-info-user-activity> 
-
-    }
 
   </div> 
-
+ 
 
 </div>

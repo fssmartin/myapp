@@ -3,8 +3,8 @@
 
 export class ProductMapper {
 
-    // DTO to PRODUCT
-  static toProduct(response: ProductDto): Product {
+  // DTO to PRODUCT
+  static dtoToProduct(response: ProductDto): Product {
 
     return {
       id: response.id,
@@ -20,8 +20,12 @@ export class ProductMapper {
       brand: response.brand,
       rating: response.rating,
     };
- 
-
   }
 
+  // DTO[] to PRODUCT[]
+  static dtoArToProductdAr(response: ProductDto[]): Product[] {
+     return response.map( this.dtoToProduct  )
+  };
+
+  
 }

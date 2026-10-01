@@ -1,0 +1,25 @@
+
+<!-- para que todas tengan la misma estructura  -->
+ 
+<div class="page-layout" [class.flipped]="flipped()">
+
+  <div class="page-layout">
+    
+    <div class="layout-header">       
+      <ng-content select="[header]"></ng-content>
+    </div>
+    
+    <!-- BODY -->
+    <div class="layout-body"> 
+      <ng-content select="[body]"></ng-content>
+    </div>
+    
+    <!-- FOOTER -->
+    <div class="layout-footer"> 
+      <ng-content select="[footer]"></ng-content>
+    </div>
+
+  </div> 
+  
+
+</div>

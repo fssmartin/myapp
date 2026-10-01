@@ -1,0 +1,40 @@
+
+<div class="page-layout">
+
+  <div class="layout-header"> 
+    <!-- <app-breadcrumb></app-breadcrumb> -->
+
+    <h1>Con metodlogia resource !! </h1><br>
+
+  </div>
+
+  <div class="layout-content">
+    
+ 
+    <!-- METODOLOGIA RESOURCE -->
+
+      <!-- Mostrar el estado de carga -->
+      @if (ProductResourceStore.products.isLoading()) {
+        <p>Cargando...</p>
+      }
+
+      <!-- Mostrar error si existe -->
+      @if (ProductResourceStore.products.error() ) {
+        <app-message-error [msgError]="ProductResourceStore.products.error()"></app-message-error>
+      }
+
+      <!-- Mostrar los datos (el verdadero valor) -->
+      @if (ProductResourceStore.products.value() ) {
+        <app-product-list
+            [items]="ProductResourceStore.products.value() ?? []">
+            <!-- ?? [] --> SIEMPRE LE PASO DATA... en este caso []     -->
+        </app-product-list>
+
+
+      }
+
+   
+  </div> 
+
+
+</div>

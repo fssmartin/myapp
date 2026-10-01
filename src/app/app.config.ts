@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
  
 export const appConfig: ApplicationConfig = {
@@ -15,12 +16,12 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withFetch(), // ← Usa Fetch API (moderno)
       withInterceptors([
-        authInterceptor
+        authInterceptor,
+        errorInterceptor
       ])
     )    
   ]
-};
-
+}; 
 /*
 Ventajas de añadir withFetch():
 ✅ Fetch API es estándar moderno del navegador
