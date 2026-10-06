@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, input, signal, viewChild } from '@angular/core';
-import { ProductStore } from '../../../products/product.store';
+import { ProductStore } from '../../../product.store';
 
 @Component({
   selector: 'app-dashboard-card',

@@ -2,7 +2,7 @@ import { Component, ElementRef, inject, signal, viewChild } from '@angular/core'
 
 import { ProductStore } from '../../product.store';
 import { AuthStore } from '../../../auth/auth.store';
-import { DashboardCardComponent } from '../../../dashboard/components/dashboard-card/dashboard-card.component';
+import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
 import { Breadcrumb } from '../../../../layout/breadcrumb/breadcrumb.component';
 import { InfoUserActivityComponent } from '../../../../shared/components/info-user-activity/info-user-activity';
 import { ProductListComponent } from '../../components/product-list/product-list.component';
@@ -12,14 +12,19 @@ import { ProductListSearchedComponent } from '../../components/product-list-sear
 
 @Component({
   selector: 'app-dashboard',
-  imports: [DashboardCardComponent, Breadcrumb, InfoUserActivityComponent, ProductListComponent, ProductSearchComponent, MessageErrorComponent, ProductListSearchedComponent],
+  imports: [
+      //DashboardCardComponent, 
+      Breadcrumb, InfoUserActivityComponent, ProductListComponent, ProductSearchComponent, MessageErrorComponent, ProductListSearchedComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
 
     remainingTime = signal('');
+    isSearch = signal(false);
     authStore = inject(AuthStore); 
+
+    pageLayout = viewChild<ElementRef<HTMLDivElement>>('pageLayout');
  
     readonly breadcrumb = {
       title: 'LISTADO',
@@ -37,10 +42,33 @@ export class DashboardComponent {
 
     productSearh(text: string): void {
       if(text){
+        this.isSearch.set(true)
         this.productStore.search(text);  // ← Carga explícita      
       }else{
+        this.isSearch.set(false)
         this.productStore.load();  // ← Carga explícita      
       }
     } 
+
+        // tiene que ser aqui pq YA esta renderizado para el scroll
+    ngAfterViewInit() {
+
+        const element = this.pageLayout()?.nativeElement;
+
+      console.log("_____this.isSearch()_______________ ",this.isSearch())
+
+        if (!element )  return;
+        
+        element.addEventListener('scroll', () => {
+
+          const isBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - 500;
+          console.log("---------- isBottom ",isBottom )
+          
+            if (isBottom && this.isSearch() === false) {
+              this.productStore.load();
+            }
+        
+      });
+    }
 
 }

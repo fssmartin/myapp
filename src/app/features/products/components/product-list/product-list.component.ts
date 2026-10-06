@@ -10,7 +10,7 @@ import { Product } from '../../models/product.model';
 })
 export class ProductListComponent {
 
-  items = input<Product[]>();
+  items = input.required<Product[]>();
 
   
 }

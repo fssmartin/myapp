@@ -8,7 +8,9 @@ import { ProductResourceStore } from '../products/product.store_resource';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [Breadcrumb, InfoUserActivityComponent, ProductListComponent, MessageErrorComponent],
+  imports: [
+    //Breadcrumb, InfoUserActivityComponent,
+    ProductListComponent, MessageErrorComponent],
   templateUrl: './dashboard-resource.component.html',
   styleUrl: './dashboard-resource.component.scss',
 })

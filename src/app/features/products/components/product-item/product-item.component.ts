@@ -1,8 +1,8 @@
 
 import { Component, input } from '@angular/core';
-import { Product } from '../../models/product.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { RatingStarsComponent } from '../../../../shared/components/rating-stars/rating-stars.component';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-item',

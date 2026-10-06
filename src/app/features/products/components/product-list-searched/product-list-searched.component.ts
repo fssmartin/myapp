@@ -9,7 +9,9 @@ import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list-searched',
-  imports: [MatIconModule,JsonPipe],
+  imports: [MatIconModule,
+              //JsonPipe
+  ],
   templateUrl: './product-list-searched.component.html',
   styleUrl: './product-list-searched.component.scss',
 })

@@ -1,20 +1,24 @@
-import { DestroyRef, Injectable, computed, inject, signal } from '@angular/core';
+import { DestroyRef, Injectable, Signal, computed, inject, signal } from '@angular/core';
  
 import { Router } from '@angular/router'; 
-import { ProductService } from './product.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'; 
-import { Product } from './models/product.model'; 
-import { LoadingService } from '../../core/services/loading.service';
+
 import { AUTH_CONSTANTS } from '../../core/constants/auth.constants';
-import { delay } from 'rxjs';
+import { LoadingService } from '../../core/services/loading.service';
+import { ProductService } from './product.service';
 import { SkipPageService } from '../../shared/services/skip-page.service';
+
+import { delay } from 'rxjs';
+
+import { Product } from './models/product.model';
+import { ProductsStoreInterface } from '../../shared/models/product_store.model';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductStore {
+export class ProductStore implements ProductsStoreInterface{
 
   private readonly _state = signal<Product[]>([]); 
   private readonly _error = signal<string | null>(null);
@@ -52,6 +56,8 @@ export class ProductStore {
     //console.log('✅ llamo a getAllProducts SERVICE recuperar DATA  ');
     //this.getProducts(); 
   }
+
+ 
     
   private setProducts(product: Product[]): void {
     this._state.set(product);
