@@ -1,9 +1,11 @@
 @use '../../../../../styles/abstracts' as a;
 
+ 
+
+ 
 
 .card {
-  flex: 1 1 250px;
-  width: 200px;
+  width: 100%;
   padding: a.$spacing-md;
   position: relative;
   @include a.panel;

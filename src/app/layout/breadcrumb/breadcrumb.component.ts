@@ -28,5 +28,6 @@ interface InterBreadCrumb {
 export class Breadcrumb {
 
     data = input.required<InterBreadCrumb>();
+    total = input<number>(0);
 
 }

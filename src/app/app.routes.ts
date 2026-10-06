@@ -10,7 +10,12 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./features/dashboard/dashboard.component').then(c => c.DashboardComponent)
+          import('./features/products/pages/dashboard/dashboard.component').then(c => c.DashboardComponent)
+      },
+      {
+        path: 'search',
+        loadComponent: () =>
+          import('./features/products/pages/search/search.component').then(c => c.SearchComponent)
       },
       {
         path: 'resource',

@@ -6,12 +6,20 @@
 
         <app-breadcrumb 
             [data]="breadcrumb";
+            [total]="productStore.products().length ?? 0"
           >
         </app-breadcrumb>  
 
     </ng-container>
 
-    <ng-container body>
+    <ng-container body >
+
+            <app-product-search
+                (search)="productSearh($event)">
+                <!-- ?? []  SIEMPRE LE PASO DATA... en este caso [] X DEFECTO , para q no casque..     -->
+            </app-product-search>
+
+            <app-product-list-searched [searchKeys]="productStore.searchKeys()"/>
 
           @if (authStore.isLogged()) {      
             <app-info-user-activity
@@ -27,8 +35,7 @@
                   {context: new HttpContext().set(ERROR_MESSAGE,'No se pudieron cargar los productos')}
                 -->  
               <app-message-error [msgError]="productStore.error()"></app-message-error>
-          }
-      
+          }      
 
           @if (productStore.isLoading()) {
               <p style="text-align: center;color:red">CARGANDO PRODUCTOS...</p>
@@ -41,14 +48,14 @@
 
     </ng-container>
 
-    <ng-container footer>
+    <!-- <ng-container footer>
         FOOTER  -------
-    </ng-container>
+    </ng-container> -->
 
 </app-dashboard-card>
 
 
-
+<!-- 
 <div class="page-layout">
 
   <div class="layout-content"> 
@@ -59,4 +66,4 @@
   </div> 
  
 
-</div>
+</div> -->

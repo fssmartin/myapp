@@ -1,5 +1,6 @@
 <div class="card">
-    <h3>{{item()?.title.split(' ')[0].toUpperCase()}} {{item()?.title.split(' ')[1].toUpperCase()}} </h3>
+    <h3>{{item()?.title}}</h3>
+    <!-- <h3>{{item()?.title.split(' ')[0].toUpperCase()}} {{item()?.title.split(' ')[1].toUpperCase()}} </h3> -->
     <img class="card-img" [src]="item()?.images[0]"/>
     <p class="card-brand">{{item()?.brand}}</p>
     <app-rating-stars 
