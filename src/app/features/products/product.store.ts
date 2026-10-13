@@ -1,4 +1,4 @@
-import { DestroyRef, Injectable, Signal, computed, inject, signal } from '@angular/core';
+import { DestroyRef, Injectable,  computed, inject, signal } from '@angular/core';
  
 import { Router } from '@angular/router'; 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'; 
@@ -12,6 +12,7 @@ import { delay } from 'rxjs';
 
 import { Product } from './models/product.model';
 import { ProductsStoreInterface } from '../../shared/models/product_store.model';
+import { ScrollStateService } from '../../shared/services/scroll-state.serevice';
 
 
 
@@ -33,9 +34,8 @@ export class ProductStore implements ProductsStoreInterface{
     'iphone':[prod1,prod2,pro3],
     'pepe':[prod4,prod4,prod4,prod4],
     'juan':[prod7,prod8,prod9],
-    }
-    
-    */
+  }
+  */
 
   readonly products = this._state.asReadonly(); 
   readonly error = this._error.asReadonly();  
@@ -46,7 +46,8 @@ export class ProductStore implements ProductsStoreInterface{
   private destroyRef = inject(DestroyRef);
   private productService = inject(ProductService);
   private loadingService = inject(LoadingService);
-
+  
+  private readonly scrollStateService = inject(ScrollStateService);
   private skipPageService= inject(SkipPageService);
 
   readonly isLoading = this.loadingService.isLoading;  
@@ -56,11 +57,17 @@ export class ProductStore implements ProductsStoreInterface{
     //console.log('✅ llamo a getAllProducts SERVICE recuperar DATA  ');
     //this.getProducts(); 
   }
-
- 
     
   private setProducts(product: Product[]): void {
     this._state.set(product);
+  }
+
+  getScrollTop(): number {
+    return this.scrollStateService.get('products');
+  }
+
+  saveScrollTop(scrollTop:number):void {    
+    this.scrollStateService.save('products',scrollTop);
   }
 
   load(): void {
@@ -69,8 +76,9 @@ export class ProductStore implements ProductsStoreInterface{
 
     this._prodIsLoading.set(true);
 
+
     if(this.skipPageService.skip() === 0 )
-    this.loadingService.show();
+      this.loadingService.show();
     
     this.productService.getAllProducts()
     .pipe(
@@ -82,13 +90,14 @@ export class ProductStore implements ProductsStoreInterface{
         this._prodIsLoading.set(false)
         this.skipPageService.nextPage();
         this.loadingService.hide();
-        console.log('✅ -------  STORE data mapeado  ---------', data);
+        console.log('✅ -------  STORE data mapeado y scrollTop ---------', this.getScrollTop() , data);
       },
       error: (err) => {
         this.loadingService.hide();
         this._error.set(err.message);
       }
     });
+
   } 
 
   search(item:string): void {

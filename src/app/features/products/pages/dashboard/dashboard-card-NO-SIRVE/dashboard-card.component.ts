@@ -22,20 +22,20 @@ export class DashboardCardComponent {
   // tiene que ser aqui pq YA esta renderizado para el scroll
   ngAfterViewInit() {
 
-    const element = this.pageLayout()?.nativeElement;
+    // const element = this.pageLayout()?.nativeElement;
 
-    if (!element) return;
+    // if (!element) return;
     
-    element.addEventListener('scroll', () => {
+    // element.addEventListener('scroll', () => {
 
-      const isBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - 500;
-      console.log("---------- isBottom ",isBottom )
+    //   const isBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - 500;
+    //   console.log("---------- isBottom ",isBottom )
       
-        if (isBottom) {
-          this.productStore.load();
-        }
+    //     if (isBottom) {
+    //       this.productStore.load();
+    //     }
     
-    });
+    // });
   }
 
 }

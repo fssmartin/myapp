@@ -1,0 +1,15 @@
+@use '../../../styles/abstracts' as a;
+
+.product-layout{
+  margin: 0 auto;
+  .product-page{
+    border: 1px solid black;
+  } 
+}
+
+
+@include a.mobile {
+    .product-layout{
+      width: 100%;
+    } 
+}  

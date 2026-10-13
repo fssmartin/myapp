@@ -29,27 +29,25 @@ export class ProductService  {
 
   getAllProducts(): Observable<Product[]> {
 
-    const skip = this.skipPageService.skip();
+    const skip  = this.skipPageService.skip();
     const limit = this.skipPageService.limit;
-
-    console.log("skip,limit_______________",skip,limit)
-    const apiProducts =      `${environment.apiUrl}/products?limit=10&skip=${skip}`; 
-
+    const apiProducts = `${environment.apiUrl}/products?limit=10&skip=${skip}`; 
     
-
+    console.log("skip,limit_______________",skip,limit);
+    
     return this.http.get<ProductsResponse>(
-        apiProducts,
-        {context: new HttpContext().set(ERROR_MESSAGE,'No se pudieron cargar los productos')}      
+          apiProducts,
+          {context: new HttpContext().set(ERROR_MESSAGE,'No se pudieron cargar los productos')}      
       ).pipe(
-        delay(AUTH_CONSTANTS.API_DELAY_MS),
-        // take(1) asegura que la petición se cierre sola en cuanto responda el servidor
-        take(1),            
-        tap((response) =>  console.log('✅ -------  getAllProducts DTO SERVICIO  ---------',response) ),
-        // map(response => response.products.map(productDto => 
-        //   ProductMapper.toProduct(productDto)
-        // )), 
-        //EN VEZ de hacerlo aqui con un map, lo haago en el maper la transformacion.. devuelvo ya un array y le paso el array de productos.
-        map(response =>  ProductMapper.dtoArToProductdAr(response.products)), 
+          delay(AUTH_CONSTANTS.API_DELAY_MS),
+          // take(1) asegura que la petición se cierre sola en cuanto responda el servidor
+          take(1),            
+          tap((response) =>  console.log('✅ -------  getAllProducts DTO SERVICIO  ---------',response) ),
+          // map(response => response.products.map(productDto => 
+          //   ProductMapper.toProduct(productDto)
+          // )), 
+          //EN VEZ de hacerlo aqui con un map, lo haago en el maper la transformacion.. devuelvo ya un array y le paso el array de productos.
+          map(response =>  ProductMapper.dtoArToProductdAr(response.products)), 
     );
   } 
 
@@ -70,7 +68,8 @@ export class ProductService  {
         // map(response => response.products.map(productDto => 
         //   ProductMapper.toProduct(productDto)
         // )), 
-        //EN VEZ de hacerlo aqui con un map, lo haago en el maper la transformacion.. devuelvo ya un array y le paso el array de productos.
+        // EN VEZ de hacerlo aqui con un map, lo haago en el maper la transformacion..
+        //  devuelvo ya un array y le paso el array de productos.
         map(response =>  ProductMapper.dtoArToProductdAr(response.products)), 
     );
   } 
@@ -85,10 +84,10 @@ export class ProductService  {
       }
     */
 
-      this._pages.update(pages => ({
-        ...pages,
-        [page]: products
-      }));
+    this._pages.update(pages => ({
+      ...pages,
+      [page]: products
+    }));
   
   }  
 

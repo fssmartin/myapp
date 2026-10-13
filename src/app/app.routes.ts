@@ -13,25 +13,20 @@ export const routes: Routes = [
           import('./features/products/pages/dashboard/dashboard.component').then(c => c.DashboardComponent)
       },
       {
-        path: 'search',
-        loadComponent: () =>
-          import('./features/products/pages/search/search.component').then(c => c.SearchComponent)
-      },
-      {
-        path: 'resource',
-        loadComponent: () =>
-          import('./features/dashboard-resource/dashboard-resource.component').then(c => c.DashboardComponent)
-      },
-      {
         path:'auth',
         loadChildren:() => 
           import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
-      },       
+      },   
       {
-        path: 'products',
-        loadComponent: () =>
-          import('./features/admin/products/products.component').then(c => c.ProductsComponent)
-      },
+        path:'products',
+        loadChildren:() => 
+          import('./features/products/product.routes').then(m => m.PRODUCT_ROUTES),
+      },                    
+      // {
+      //   path: 'products',
+      //   loadComponent: () =>
+      //     import('./features/admin/products/products.component').then(c => c.ProductsComponent)
+      // },
       {    
           path: '**',
           component: NotFoundComponent

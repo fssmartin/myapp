@@ -3,6 +3,9 @@ import {  computed, Injectable, signal } from "@angular/core";
 @Injectable({ providedIn: 'root' })
 export class SkipPageService {
 
+  // servicio que me indica donde empiezo en la pagina , registros.
+  // habria que crear un array o 
+
   readonly limit = 10;
 
   private readonly _page = signal(0);
